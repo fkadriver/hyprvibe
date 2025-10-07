@@ -152,10 +152,10 @@ After making changes, rebuild the system:
 
 ```bash
 # For nixstation
-sudo nixos-rebuild switch --flake /home/chrisf/build/config/hyprvibe#nixstation
+sudo nixos-rebuild switch --flake /home/scott/build/config/hyprvibe#nixstation
 
 # For rvbee
-sudo nixos-rebuild switch --flake /home/chrisf/build/config/hyprvibe#rvbee
+sudo nixos-rebuild switch --flake /home/scott/build/config/hyprvibe#rvbee
 ```
 
 ## Troubleshooting

@@ -17,7 +17,7 @@ This document outlines the migration plan for moving your `nixstation` system fr
 - ✅ **File System Layout**: Preserved your existing BTRFS `/nix` and `/home` mounts
 - ✅ **Boot Loader**: Kept GRUB configuration with EFI support
 - ✅ **Hardware Support**: Preserved Intel CPU and AMD GPU configurations
-- ✅ **User Configuration**: Preserved user `chrisf` with all existing groups
+- ✅ **User Configuration**: Preserved user `scott` with all existing groups
 - ✅ **Package Set**: Preserved all your existing packages and applications
 - ✅ **Services**: Preserved Tor, SSH, Sunshine, and other custom services
 

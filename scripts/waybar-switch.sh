@@ -3,7 +3,7 @@
 # Waybar Configuration Switcher
 # This script allows switching between full and simple waybar configurations
 
-CONFIG_DIR="/home/chrisf/.config/waybar"
+CONFIG_DIR="/home/scott/.config/waybar"
 FULL_CONFIG="$CONFIG_DIR/config"
 SIMPLE_CONFIG="$CONFIG_DIR/simple-config"
 

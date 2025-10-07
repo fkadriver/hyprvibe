@@ -6,7 +6,7 @@
 set -e
 
 HOSTNAME=$(hostname)
-CONFIG_DIR="/home/chrisf/.config/hypr"
+CONFIG_DIR="/home/scott/.config/hypr"
 
 echo "=== Monitor Setup Helper for $HOSTNAME ==="
 

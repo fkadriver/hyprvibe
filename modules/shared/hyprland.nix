@@ -24,15 +24,15 @@ in {
 
     # Install base config; host supplies monitor file separately
     system.activationScripts.hyprlandBase = lib.mkAfter ''
-      mkdir -p /home/chrisf/.config/hypr
+      mkdir -p /home/scott/.config/hypr
       # Remove existing symlinks/files if they exist
-      rm -f /home/chrisf/.config/hypr/hyprland-base.conf
-      ln -sf ${../../configs/hyprland-base.conf} /home/chrisf/.config/hypr/hyprland-base.conf
+      rm -f /home/scott/.config/hypr/hyprland-base.conf
+      ln -sf ${../../configs/hyprland-base.conf} /home/scott/.config/hypr/hyprland-base.conf
       ${lib.optionalString (cfg.monitorsFile != null) ''
-        rm -f /home/chrisf/.config/hypr/$(basename ${cfg.monitorsFile})
-        ln -sf ${cfg.monitorsFile} /home/chrisf/.config/hypr/$(basename ${cfg.monitorsFile})
+        rm -f /home/scott/.config/hypr/$(basename ${cfg.monitorsFile})
+        ln -sf ${cfg.monitorsFile} /home/scott/.config/hypr/$(basename ${cfg.monitorsFile})
       ''}
-      chown -R chrisf:users /home/chrisf/.config/hypr
+      chown -R scott:users /home/scott/.config/hypr
     '';
   };
 }

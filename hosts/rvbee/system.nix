@@ -262,7 +262,7 @@ let
     drawing
   ];
   # Centralized wallpaper path used by hyprpaper and hyprlock
-  wallpaperPath = "/home/chrisf/build/config/hosts/rvbee/aesthetic_8_bit_art-wallpaper-3840x2160.jpg";
+  wallpaperPath = "/home/scott/build/config/hosts/rvbee/aesthetic_8_bit_art-wallpaper-3840x2160.jpg";
 
   # Script to import GITHUB_TOKEN into systemd --user environment
   setGithubTokenScript = pkgs.writeShellScript "set-github-token" ''
@@ -536,7 +536,7 @@ in
   documentation.man.enable = false;
 
   # User configuration
-  users.users.chrisf = {
+  users.users.scott = {
     isNormalUser = true;
     shell = pkgs.fish;
     description = "Chris Fisher";
@@ -553,46 +553,46 @@ in
       "i2c"
     ];
     # Create Hyprland configuration directory and copy config
-    home = "/home/chrisf";
+    home = "/home/scott";
   };
 
   # Copy Hyprland configuration to user's home
   system.activationScripts.copyHyprlandConfig = ''
-    mkdir -p /home/chrisf/.config/hypr
-    cp ${./hyprland.conf} /home/chrisf/.config/hypr/hyprland.conf
-    cp ${../../configs/hyprland-base.conf} /home/chrisf/.config/hypr/hyprland-base.conf
-    cp ${../../configs/hyprland-monitors-rvbee.conf} /home/chrisf/.config/hypr/hyprland-monitors-rvbee.conf
+    mkdir -p /home/scott/.config/hypr
+    cp ${./hyprland.conf} /home/scott/.config/hypr/hyprland.conf
+    cp ${../../configs/hyprland-base.conf} /home/scott/.config/hypr/hyprland-base.conf
+    cp ${../../configs/hyprland-monitors-rvbee.conf} /home/scott/.config/hypr/hyprland-monitors-rvbee.conf
     # Render wallpaper path into hyprpaper/hyprlock configs
-    ${pkgs.gnused}/bin/sed "s#__WALLPAPER__#${wallpaperPath}#g" ${./hyprpaper.conf} > /home/chrisf/.config/hypr/hyprpaper.conf
-    ${pkgs.gnused}/bin/sed "s#__WALLPAPER__#${wallpaperPath}#g" ${./hyprlock.conf} > /home/chrisf/.config/hypr/hyprlock.conf
-    cp ${./hypridle.conf} /home/chrisf/.config/hypr/hypridle.conf
-    chown -R chrisf:users /home/chrisf/.config/hypr
+    ${pkgs.gnused}/bin/sed "s#__WALLPAPER__#${wallpaperPath}#g" ${./hyprpaper.conf} > /home/scott/.config/hypr/hyprpaper.conf
+    ${pkgs.gnused}/bin/sed "s#__WALLPAPER__#${wallpaperPath}#g" ${./hyprlock.conf} > /home/scott/.config/hypr/hyprlock.conf
+    cp ${./hypridle.conf} /home/scott/.config/hypr/hypridle.conf
+    chown -R scott:users /home/scott/.config/hypr
     # BTC script for hyprlock
-    cp ${./scripts/hyprlock-btc.sh} /home/chrisf/.config/hypr/hyprlock-btc.sh
-    chmod +x /home/chrisf/.config/hypr/hyprlock-btc.sh
+    cp ${./scripts/hyprlock-btc.sh} /home/scott/.config/hypr/hyprlock-btc.sh
+    chmod +x /home/scott/.config/hypr/hyprlock-btc.sh
     
-    mkdir -p /home/chrisf/.config/waybar
-    cp ${./waybar.json} /home/chrisf/.config/waybar/config
+    mkdir -p /home/scott/.config/waybar
+    cp ${./waybar.json} /home/scott/.config/waybar/config
     # Theme and scripts for Waybar (cyberpunk aesthetic + custom modules)
-    cp ${./waybar.css} /home/chrisf/.config/waybar/style.css
-    mkdir -p /home/chrisf/.config/waybar/scripts
-    cp ${./scripts/waybar-dunst.sh} /home/chrisf/.config/waybar/scripts/waybar-dunst.sh
-    cp ${./scripts/waybar-public-ip.sh} /home/chrisf/.config/waybar/scripts/waybar-public-ip.sh
-    cp ${./scripts/waybar-amd-gpu.sh} /home/chrisf/.config/waybar/scripts/waybar-amd-gpu.sh
-    cp ${./scripts/waybar-weather.sh} /home/chrisf/.config/waybar/scripts/waybar-weather.sh
-    cp ${./scripts/waybar-brightness.sh} /home/chrisf/.config/waybar/scripts/waybar-brightness.sh
-    cp ${./scripts/waybar-btc.py} /home/chrisf/.config/waybar/scripts/waybar-btc.py
+    cp ${./waybar.css} /home/scott/.config/waybar/style.css
+    mkdir -p /home/scott/.config/waybar/scripts
+    cp ${./scripts/waybar-dunst.sh} /home/scott/.config/waybar/scripts/waybar-dunst.sh
+    cp ${./scripts/waybar-public-ip.sh} /home/scott/.config/waybar/scripts/waybar-public-ip.sh
+    cp ${./scripts/waybar-amd-gpu.sh} /home/scott/.config/waybar/scripts/waybar-amd-gpu.sh
+    cp ${./scripts/waybar-weather.sh} /home/scott/.config/waybar/scripts/waybar-weather.sh
+    cp ${./scripts/waybar-brightness.sh} /home/scott/.config/waybar/scripts/waybar-brightness.sh
+    cp ${./scripts/waybar-btc.py} /home/scott/.config/waybar/scripts/waybar-btc.py
     # CoinGecko BTC-only
-    cp ${./scripts/waybar-btc-coingecko.sh} /home/chrisf/.config/waybar/scripts/waybar-btc-coingecko.sh
-    cp ${./scripts/waybar-reboot.sh} /home/chrisf/.config/waybar/scripts/waybar-reboot.sh
-    cp ${./scripts/waybar-mpris.sh} /home/chrisf/.config/waybar/scripts/waybar-mpris.sh
-    chmod +x /home/chrisf/.config/waybar/scripts/*.sh
-    chmod +x /home/chrisf/.config/waybar/scripts/*.py || true
-    chown -R chrisf:users /home/chrisf/.config/waybar
+    cp ${./scripts/waybar-btc-coingecko.sh} /home/scott/.config/waybar/scripts/waybar-btc-coingecko.sh
+    cp ${./scripts/waybar-reboot.sh} /home/scott/.config/waybar/scripts/waybar-reboot.sh
+    cp ${./scripts/waybar-mpris.sh} /home/scott/.config/waybar/scripts/waybar-mpris.sh
+    chmod +x /home/scott/.config/waybar/scripts/*.sh
+    chmod +x /home/scott/.config/waybar/scripts/*.py || true
+    chown -R scott:users /home/scott/.config/waybar
     
     # Configure Kitty terminal
-    mkdir -p /home/chrisf/.config/kitty
-    cat > /home/chrisf/.config/kitty/kitty.conf << 'EOF'
+    mkdir -p /home/scott/.config/kitty
+    cat > /home/scott/.config/kitty/kitty.conf << 'EOF'
     # Kitty Terminal Configuration
     
     # Font configuration
@@ -672,11 +672,11 @@ in
     allow_remote_control yes
     listen_on unix:/tmp/kitty
     EOF
-    chown -R chrisf:users /home/chrisf/.config/kitty
+    chown -R scott:users /home/scott/.config/kitty
     
     # Configure Oh My Posh default (preserve user-selected theme if present)
-    mkdir -p /home/chrisf/.config/oh-my-posh
-    cat > /home/chrisf/.config/oh-my-posh/config-default.json << 'EOF'
+    mkdir -p /home/scott/.config/oh-my-posh
+    cat > /home/scott/.config/oh-my-posh/config-default.json << 'EOF'
     {
       "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
       "version": 1,
@@ -809,10 +809,10 @@ in
       ]
     }
     EOF
-    [ -f /home/chrisf/.config/oh-my-posh/config.json ] || cp /home/chrisf/.config/oh-my-posh/config-default.json /home/chrisf/.config/oh-my-posh/config.json
+    [ -f /home/scott/.config/oh-my-posh/config.json ] || cp /home/scott/.config/oh-my-posh/config-default.json /home/scott/.config/oh-my-posh/config.json
     
     # Create additional Oh My Posh theme configurations
-    cat > /home/chrisf/.config/oh-my-posh/config-enhanced.json << 'EOF'
+    cat > /home/scott/.config/oh-my-posh/config-enhanced.json << 'EOF'
     {
       "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
       "version": 3,
@@ -989,7 +989,7 @@ in
     }
     EOF
     
-    cat > /home/chrisf/.config/oh-my-posh/config-minimal.json << 'EOF'
+    cat > /home/scott/.config/oh-my-posh/config-minimal.json << 'EOF'
     {
       "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
       "version": 3,
@@ -1053,7 +1053,7 @@ in
     }
     EOF
     
-    cat > /home/chrisf/.config/oh-my-posh/config-professional.json << 'EOF'
+    cat > /home/scott/.config/oh-my-posh/config-professional.json << 'EOF'
     {
       "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
       "version": 3,
@@ -1228,11 +1228,11 @@ in
     }
     EOF
     
-    chown -R chrisf:users /home/chrisf/.config/oh-my-posh
+    chown -R scott:users /home/scott/.config/oh-my-posh
     
     # Create Atuin Fish configuration
-    mkdir -p /home/chrisf/.config/fish/conf.d
-    cat > /home/chrisf/.config/fish/conf.d/atuin.fish << 'EOF'
+    mkdir -p /home/scott/.config/fish/conf.d
+    cat > /home/scott/.config/fish/conf.d/atuin.fish << 'EOF'
     # Atuin shell history integration
     if command -q atuin
       set -g ATUIN_SESSION (atuin uuid)
@@ -1241,7 +1241,7 @@ in
     EOF
     
     # Create Oh My Posh Fish configuration
-    cat > /home/chrisf/.config/fish/conf.d/oh-my-posh.fish << 'EOF'
+    cat > /home/scott/.config/fish/conf.d/oh-my-posh.fish << 'EOF'
     # Oh My Posh prompt configuration
     if command -q oh-my-posh
       # Initialize Oh My Posh with a custom theme
@@ -1250,7 +1250,7 @@ in
     EOF
     
     # Additional Fish configuration for better integration
-    cat > /home/chrisf/.config/fish/conf.d/kitty-integration.fish << 'EOF'
+    cat > /home/scott/.config/fish/conf.d/kitty-integration.fish << 'EOF'
     # Kitty terminal integration
     if test "$TERM" = "xterm-kitty"
       # Enable kitty shell integration
@@ -1261,11 +1261,11 @@ in
     end
     EOF
     
-    chown -R chrisf:users /home/chrisf/.config/fish
+    chown -R scott:users /home/scott/.config/fish
 
     # Hard-override fish prompt to bootstrap Oh My Posh on first prompt draw
-    mkdir -p /home/chrisf/.config/fish/functions
-    cat > /home/chrisf/.config/fish/functions/fish_prompt.fish << 'EOF'
+    mkdir -p /home/scott/.config/fish/functions
+    cat > /home/scott/.config/fish/functions/fish_prompt.fish << 'EOF'
     function fish_prompt
       if command -q oh-my-posh
         oh-my-posh print primary --config ~/.config/oh-my-posh/config.json
@@ -1274,12 +1274,12 @@ in
       printf '%s> ' (prompt_pwd)
     end
     EOF
-    chown -R chrisf:users /home/chrisf/.config/fish/functions
+    chown -R scott:users /home/scott/.config/fish/functions
 
     # Ensure Oh My Posh is initialized for all interactive Fish sessions
-    mkdir -p /home/chrisf/.config/fish
-    if ! grep -q "oh-my-posh init fish" /home/chrisf/.config/fish/config.fish 2>/dev/null; then
-      cat >> /home/chrisf/.config/fish/config.fish << 'EOF'
+    mkdir -p /home/scott/.config/fish
+    if ! grep -q "oh-my-posh init fish" /home/scott/.config/fish/config.fish 2>/dev/null; then
+      cat >> /home/scott/.config/fish/config.fish << 'EOF'
     # Initialize Oh My Posh (fallback to ensure prompt loads)
     if status is-interactive
       if command -q oh-my-posh
@@ -1289,35 +1289,35 @@ in
     EOF
     fi
     # GitHub token export for fish, read from local untracked file if present
-    mkdir -p /home/chrisf/.config/secrets
-    chown -R chrisf:users /home/chrisf/.config/secrets
-    chmod 700 /home/chrisf/.config/secrets
-    cat > /home/chrisf/.config/fish/conf.d/github_token.fish << 'EOF'
-    if test -r /home/chrisf/.config/secrets/github_token
-      set -gx GITHUB_TOKEN (string trim (cat /home/chrisf/.config/secrets/github_token))
+    mkdir -p /home/scott/.config/secrets
+    chown -R scott:users /home/scott/.config/secrets
+    chmod 700 /home/scott/.config/secrets
+    cat > /home/scott/.config/fish/conf.d/github_token.fish << 'EOF'
+    if test -r /home/scott/.config/secrets/github_token
+      set -gx GITHUB_TOKEN (string trim (cat /home/scott/.config/secrets/github_token))
     end
     EOF
 
     # Ensure ~/.local/bin is on PATH for user-installed scripts
-    cat > /home/chrisf/.config/fish/conf.d/local-bin.fish << 'EOF'
+    cat > /home/scott/.config/fish/conf.d/local-bin.fish << 'EOF'
     if test -d "$HOME/.local/bin"
       fish_add_path "$HOME/.local/bin"
     end
     EOF
-    chown -R chrisf:users /home/chrisf/.config/fish
+    chown -R scott:users /home/scott/.config/fish
     # Install crypto-price (u3mur4) for Waybar module
-    mkdir -p /home/chrisf/.local/bin
-    chown -R chrisf:users /home/chrisf/.local
-    runuser -s ${pkgs.bash}/bin/bash -l chrisf -c 'GOBIN=$HOME/.local/bin ${pkgs.go}/bin/go install github.com/u3mur4/crypto-price/cmd/crypto-price@latest' || true
+    mkdir -p /home/scott/.local/bin
+    chown -R scott:users /home/scott/.local
+    runuser -s ${pkgs.bash}/bin/bash -l scott -c 'GOBIN=$HOME/.local/bin ${pkgs.go}/bin/go install github.com/u3mur4/crypto-price/cmd/crypto-price@latest' || true
     
     # Copy monitor setup helper script
-    cp ${../../scripts/setup-monitors.sh} /home/chrisf/.local/bin/setup-monitors
-    chmod +x /home/chrisf/.local/bin/setup-monitors
+    cp ${../../scripts/setup-monitors.sh} /home/scott/.local/bin/setup-monitors
+    chmod +x /home/scott/.local/bin/setup-monitors
 
 
     # Apply GTK theming (Tokyo Night Dark + Papirus-Dark + Bibata cursor)
-    mkdir -p /home/chrisf/.config/gtk-3.0
-    cat > /home/chrisf/.config/gtk-3.0/settings.ini << 'EOF'
+    mkdir -p /home/scott/.config/gtk-3.0
+    cat > /home/scott/.config/gtk-3.0/settings.ini << 'EOF'
     [Settings]
     gtk-theme-name=Tokyonight-Dark-B
     gtk-icon-theme-name=Papirus-Dark
@@ -1325,8 +1325,8 @@ in
     gtk-cursor-theme-size=24
     gtk-application-prefer-dark-theme=true
     EOF
-    mkdir -p /home/chrisf/.config/gtk-4.0
-    cat > /home/chrisf/.config/gtk-4.0/settings.ini << 'EOF'
+    mkdir -p /home/scott/.config/gtk-4.0
+    cat > /home/scott/.config/gtk-4.0/settings.ini << 'EOF'
     [Settings]
     gtk-theme-name=Tokyonight-Dark-B
     gtk-icon-theme-name=Papirus-Dark
@@ -1334,11 +1334,11 @@ in
     gtk-cursor-theme-size=24
     gtk-application-prefer-dark-theme=true
     EOF
-    chown -R chrisf:users /home/chrisf/.config/gtk-3.0 /home/chrisf/.config/gtk-4.0
+    chown -R scott:users /home/scott/.config/gtk-3.0 /home/scott/.config/gtk-4.0
 
     # Configure qt6ct to use Adwaita-Dark and Papirus icons for closer match
-    mkdir -p /home/chrisf/.config/qt6ct
-    cat > /home/chrisf/.config/qt6ct/qt6ct.conf << 'EOF'
+    mkdir -p /home/scott/.config/qt6ct
+    cat > /home/scott/.config/qt6ct/qt6ct.conf << 'EOF'
     [Appearance]
     style=adwaita-dark
     icon_theme=Papirus-Dark
@@ -1363,13 +1363,13 @@ in
     force_raster_widgets=false
     ignore_platform_theme=false
     EOF
-    chown -R chrisf:users /home/chrisf/.config/qt6ct
+    chown -R scott:users /home/scott/.config/qt6ct
     # Install rofi brightness menu
-    install -m 0755 ${./scripts/rofi-brightness.sh} /home/chrisf/.local/bin/rofi-brightness
-    chown chrisf:users /home/chrisf/.local/bin/rofi-brightness
+    install -m 0755 ${./scripts/rofi-brightness.sh} /home/scott/.local/bin/rofi-brightness
+    chown scott:users /home/scott/.local/bin/rofi-brightness
     
     # Install Oh My Posh theme switcher
-    cat > /home/chrisf/.local/bin/switch-oh-my-posh-theme << 'EOF'
+    cat > /home/scott/.local/bin/switch-oh-my-posh-theme << 'EOF'
     #!/run/current-system/sw/bin/bash
 
     # Oh My Posh Theme Switcher
@@ -1464,12 +1464,12 @@ in
 
     switch_theme "$1"
     EOF
-    chmod +x /home/chrisf/.local/bin/switch-oh-my-posh-theme
-    chown chrisf:users /home/chrisf/.local/bin/switch-oh-my-posh-theme
+    chmod +x /home/scott/.local/bin/switch-oh-my-posh-theme
+    chown scott:users /home/scott/.local/bin/switch-oh-my-posh-theme
     
     # Set Kitty as default terminal in desktop environment
-    mkdir -p /home/chrisf/.local/share/applications
-    cat > /home/chrisf/.local/share/applications/kitty.desktop << 'EOF'
+    mkdir -p /home/scott/.local/share/applications
+    cat > /home/scott/.local/share/applications/kitty.desktop << 'EOF'
     [Desktop Entry]
     Version=1.0
     Type=Application
@@ -1481,10 +1481,10 @@ in
     Terminal=false
     Categories=System;TerminalEmulator;
     EOF
-    chown chrisf:users /home/chrisf/.local/share/applications/kitty.desktop
+    chown scott:users /home/scott/.local/share/applications/kitty.desktop
     
     # Update desktop database to register Kitty
-    runuser -s ${pkgs.bash}/bin/bash -l chrisf -c '${pkgs.desktop-file-utils}/bin/update-desktop-database ~/.local/share/applications' || true
+    runuser -s ${pkgs.bash}/bin/bash -l scott -c '${pkgs.desktop-file-utils}/bin/update-desktop-database ~/.local/share/applications' || true
   '';
 
   # Programs

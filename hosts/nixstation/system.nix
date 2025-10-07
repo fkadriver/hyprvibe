@@ -487,7 +487,7 @@ let
   ];
 
   # Centralized wallpaper path
-  wallpaperPath = "/home/chrisf/build/config/hyprvibe/hosts/nixstation/wallpaper.jpg";
+  wallpaperPath = "/home/scott/build/config/hyprvibe/hosts/nixstation/wallpaper.jpg";
 
   # Script to import GITHUB_TOKEN into systemd --user environment
   setGithubTokenScript = pkgs.writeShellScript "set-github-token" ''
@@ -830,7 +830,7 @@ in
   documentation.man.enable = false;
 
   # User configuration - PRESERVING YOUR EXISTING CONFIG
-  users.users.chrisf = {
+  users.users.scott = {
     isNormalUser = true;
     shell = pkgs.fish;
     description = "Chris Fisher";
@@ -847,46 +847,46 @@ in
       "i2c"
       "disk"
     ];
-    home = "/home/chrisf";
+    home = "/home/scott";
   };
 
   # NIXSTATION-specific activation scripts (complementing shared modules)
   system.activationScripts.nixstationSpecific = ''
     # Copy NIXSTATION-specific Hyprland configs
-    mkdir -p /home/chrisf/.config/hypr
-    cp ${./hyprland.conf} /home/chrisf/.config/hypr/hyprland.conf
+    mkdir -p /home/scott/.config/hypr
+    cp ${./hyprland.conf} /home/scott/.config/hypr/hyprland.conf
     # Render wallpaper path into hyprpaper/hyprlock configs
-    ${pkgs.gnused}/bin/sed "s#__WALLPAPER__#${wallpaperPath}#g" ${./hyprpaper.conf} > /home/chrisf/.config/hypr/hyprpaper.conf
-    ${pkgs.gnused}/bin/sed "s#__WALLPAPER__#${wallpaperPath}#g" ${./hyprlock.conf} > /home/chrisf/.config/hypr/hyprlock.conf
-    cp ${./hypridle.conf} /home/chrisf/.config/hypr/hypridle.conf
+    ${pkgs.gnused}/bin/sed "s#__WALLPAPER__#${wallpaperPath}#g" ${./hyprpaper.conf} > /home/scott/.config/hypr/hyprpaper.conf
+    ${pkgs.gnused}/bin/sed "s#__WALLPAPER__#${wallpaperPath}#g" ${./hyprlock.conf} > /home/scott/.config/hypr/hyprlock.conf
+    cp ${./hypridle.conf} /home/scott/.config/hypr/hypridle.conf
     
     # Install NIXSTATION-specific Hyprland scripts
-    mkdir -p /home/chrisf/.config/hypr/scripts
-    cp ${./scripts/launch-communication.sh} /home/chrisf/.config/hypr/scripts/launch-communication.sh
-    cp ${./scripts/launch-development.sh} /home/chrisf/.config/hypr/scripts/launch-development.sh
-    cp ${./scripts/logitech-bluetooth.sh} /home/chrisf/.config/hypr/scripts/logitech-bluetooth.sh
-    chmod +x /home/chrisf/.config/hypr/scripts/*.sh
-    chown -R chrisf:users /home/chrisf/.config/hypr
+    mkdir -p /home/scott/.config/hypr/scripts
+    cp ${./scripts/launch-communication.sh} /home/scott/.config/hypr/scripts/launch-communication.sh
+    cp ${./scripts/launch-development.sh} /home/scott/.config/hypr/scripts/launch-development.sh
+    cp ${./scripts/logitech-bluetooth.sh} /home/scott/.config/hypr/scripts/logitech-bluetooth.sh
+    chmod +x /home/scott/.config/hypr/scripts/*.sh
+    chown -R scott:users /home/scott/.config/hypr
     
     # Copy additional waybar configs (shared module handles main config)
-    mkdir -p /home/chrisf/.config/waybar
-    cp ${./waybar-simple.json} /home/chrisf/.config/waybar/waybar-simple.json
-    cp ${./waybar-simple-dp1.json} /home/chrisf/.config/waybar/waybar-simple-dp1.json
-    cp ${./waybar-simple-dp2.json} /home/chrisf/.config/waybar/waybar-simple-dp2.json
-    cp ${./waybar-simple-hdmi.json} /home/chrisf/.config/waybar/waybar-simple-hdmi.json
+    mkdir -p /home/scott/.config/waybar
+    cp ${./waybar-simple.json} /home/scott/.config/waybar/waybar-simple.json
+    cp ${./waybar-simple-dp1.json} /home/scott/.config/waybar/waybar-simple-dp1.json
+    cp ${./waybar-simple-dp2.json} /home/scott/.config/waybar/waybar-simple-dp2.json
+    cp ${./waybar-simple-hdmi.json} /home/scott/.config/waybar/waybar-simple-hdmi.json
     
     # Copy waybar scripts
-    mkdir -p /home/chrisf/.config/waybar/scripts
-    cp ${./scripts/waybar-timezones.sh} /home/chrisf/.config/waybar/scripts/waybar-timezones.sh
+    mkdir -p /home/scott/.config/waybar/scripts
+    cp ${./scripts/waybar-timezones.sh} /home/scott/.config/waybar/scripts/waybar-timezones.sh
     
     # Ensure waybar scripts are executable
-    chmod +x /home/chrisf/.config/waybar/scripts/*.sh 2>/dev/null || true
-    chmod +x /home/chrisf/.config/waybar/scripts/*.py 2>/dev/null || true
-    chown -R chrisf:users /home/chrisf/.config/waybar
+    chmod +x /home/scott/.config/waybar/scripts/*.sh 2>/dev/null || true
+    chmod +x /home/scott/.config/waybar/scripts/*.py 2>/dev/null || true
+    chown -R scott:users /home/scott/.config/waybar
     
     # Create Atuin Fish configuration
-    mkdir -p /home/chrisf/.config/fish/conf.d
-    cat > /home/chrisf/.config/fish/conf.d/atuin.fish << 'EOF'
+    mkdir -p /home/scott/.config/fish/conf.d
+    cat > /home/scott/.config/fish/conf.d/atuin.fish << 'EOF'
     # Atuin shell history integration
     if command -q atuin
       set -g ATUIN_SESSION (atuin uuid)
@@ -895,7 +895,7 @@ in
     EOF
     
     # Additional Fish configuration for better integration
-    cat > /home/chrisf/.config/fish/conf.d/kitty-integration.fish << 'EOF'
+    cat > /home/scott/.config/fish/conf.d/kitty-integration.fish << 'EOF'
     # Kitty terminal integration
     if test "$TERM" = "xterm-kitty"
       # Enable kitty shell integration
@@ -907,28 +907,28 @@ in
     EOF
     
     # GitHub token export for fish
-    mkdir -p /home/chrisf/.config/secrets
-    chown -R chrisf:users /home/chrisf/.config/secrets
-    chmod 700 /home/chrisf/.config/secrets
-    cat > /home/chrisf/.config/fish/conf.d/github_token.fish << 'EOF'
-    if test -r /home/chrisf/.config/secrets/github_token
-      set -gx GITHUB_TOKEN (string trim (cat /home/chrisf/.config/secrets/github_token))
+    mkdir -p /home/scott/.config/secrets
+    chown -R scott:users /home/scott/.config/secrets
+    chmod 700 /home/scott/.config/secrets
+    cat > /home/scott/.config/fish/conf.d/github_token.fish << 'EOF'
+    if test -r /home/scott/.config/secrets/github_token
+      set -gx GITHUB_TOKEN (string trim (cat /home/scott/.config/secrets/github_token))
     end
     EOF
-    chown -R chrisf:users /home/chrisf/.config/fish
+    chown -R scott:users /home/scott/.config/fish
     
     # Install crypto-price for Waybar module
-    mkdir -p /home/chrisf/.local/bin
-    chown -R chrisf:users /home/chrisf/.local
-    runuser -l chrisf -c 'GOBIN=$HOME/.local/bin ${pkgs.go}/bin/go install github.com/u3mur4/crypto-price/cmd/crypto-price@latest' || true
+    mkdir -p /home/scott/.local/bin
+    chown -R scott:users /home/scott/.local
+    runuser -l scott -c 'GOBIN=$HOME/.local/bin ${pkgs.go}/bin/go install github.com/u3mur4/crypto-price/cmd/crypto-price@latest' || true
     
     # Copy monitor setup helper script
-    cp ${../../scripts/setup-monitors.sh} /home/chrisf/.local/bin/setup-monitors
-    chmod +x /home/chrisf/.local/bin/setup-monitors
+    cp ${../../scripts/setup-monitors.sh} /home/scott/.local/bin/setup-monitors
+    chmod +x /home/scott/.local/bin/setup-monitors
     
     # Set Kitty as default terminal in desktop environment
-    mkdir -p /home/chrisf/.local/share/applications
-    cat > /home/chrisf/.local/share/applications/kitty.desktop << 'EOF'
+    mkdir -p /home/scott/.local/share/applications
+    cat > /home/scott/.local/share/applications/kitty.desktop << 'EOF'
     [Desktop Entry]
     Version=1.0
     Type=Application
@@ -940,27 +940,27 @@ in
     Terminal=false
     Categories=System;TerminalEmulator;
     EOF
-    chown chrisf:users /home/chrisf/.local/share/applications/kitty.desktop
+    chown scott:users /home/scott/.local/share/applications/kitty.desktop
     
     # Update desktop database to register Kitty
-    runuser -l chrisf -c 'update-desktop-database ~/.local/share/applications' || true
+    runuser -l scott -c 'update-desktop-database ~/.local/share/applications' || true
     
     # Copy waybar switch script
-    cp ${../../scripts/waybar-switch.sh} /home/chrisf/.local/bin/waybar-switch
-    chmod +x /home/chrisf/.local/bin/waybar-switch
+    cp ${../../scripts/waybar-switch.sh} /home/scott/.local/bin/waybar-switch
+    chmod +x /home/scott/.local/bin/waybar-switch
     
     # Copy per-monitor waybar script
-    cp ${../../scripts/waybar-per-monitor.sh} /home/chrisf/.local/bin/waybar-per-monitor
-    chmod +x /home/chrisf/.local/bin/waybar-per-monitor
+    cp ${../../scripts/waybar-per-monitor.sh} /home/scott/.local/bin/waybar-per-monitor
+    chmod +x /home/scott/.local/bin/waybar-per-monitor
 
     # Copy Logitech Bluetooth management script
-    cp ${./scripts/logitech-bluetooth.sh} /home/chrisf/.local/bin/logitech-bluetooth
-    chmod +x /home/chrisf/.local/bin/logitech-bluetooth
+    cp ${./scripts/logitech-bluetooth.sh} /home/scott/.local/bin/logitech-bluetooth
+    chmod +x /home/scott/.local/bin/logitech-bluetooth
 
 
     # Apply GTK theming
-    mkdir -p /home/chrisf/.config/gtk-3.0
-    cat > /home/chrisf/.config/gtk-3.0/settings.ini << 'EOF'
+    mkdir -p /home/scott/.config/gtk-3.0
+    cat > /home/scott/.config/gtk-3.0/settings.ini << 'EOF'
     [Settings]
     gtk-theme-name=Tokyonight-Dark-B
     gtk-icon-theme-name=Papirus-Dark
@@ -968,8 +968,8 @@ in
     gtk-cursor-theme-size=24
     gtk-application-prefer-dark-theme=true
     EOF
-    mkdir -p /home/chrisf/.config/gtk-4.0
-    cat > /home/chrisf/.config/gtk-4.0/settings.ini << 'EOF'
+    mkdir -p /home/scott/.config/gtk-4.0
+    cat > /home/scott/.config/gtk-4.0/settings.ini << 'EOF'
     [Settings]
     gtk-theme-name=Tokyonight-Dark-B
     gtk-icon-theme-name=Papirus-Dark
@@ -977,11 +977,11 @@ in
     gtk-cursor-theme-size=24
     gtk-application-prefer-dark-theme=true
     EOF
-    chown -R chrisf:users /home/chrisf/.config/gtk-3.0 /home/chrisf/.config/gtk-4.0
+    chown -R scott:users /home/scott/.config/gtk-3.0 /home/scott/.config/gtk-4.0
 
     # Configure qt6ct
-    mkdir -p /home/chrisf/.config/qt6ct
-    cat > /home/chrisf/.config/qt6ct/qt6ct.conf << 'EOF'
+    mkdir -p /home/scott/.config/qt6ct
+    cat > /home/scott/.config/qt6ct/qt6ct.conf << 'EOF'
     [Appearance]
     style=adwaita-dark
     icon_theme=Papirus-Dark
@@ -1006,15 +1006,15 @@ in
     force_raster_widgets=false
     ignore_platform_theme=false
     EOF
-    chown -R chrisf:users /home/chrisf/.config/qt6ct
+    chown -R scott:users /home/scott/.config/qt6ct
     
     # Install rofi brightness menu
-    install -m 0755 ${./scripts/rofi-brightness.sh} /home/chrisf/.local/bin/rofi-brightness
-    chown chrisf:users /home/chrisf/.local/bin/rofi-brightness
+    install -m 0755 ${./scripts/rofi-brightness.sh} /home/scott/.local/bin/rofi-brightness
+    chown scott:users /home/scott/.local/bin/rofi-brightness
     
     # Configure Kitty terminal
-    mkdir -p /home/chrisf/.config/kitty
-    cat > /home/chrisf/.config/kitty/kitty.conf << 'EOF'
+    mkdir -p /home/scott/.config/kitty
+    cat > /home/scott/.config/kitty/kitty.conf << 'EOF'
     # Kitty Terminal Configuration
     
     # Font configuration
@@ -1094,11 +1094,11 @@ in
     allow_remote_control yes
     listen_on unix:/tmp/kitty
     EOF
-    chown -R chrisf:users /home/chrisf/.config/kitty
+    chown -R scott:users /home/scott/.config/kitty
     
     # Configure Oh My Posh
-    mkdir -p /home/chrisf/.config/oh-my-posh
-    cat > /home/chrisf/.config/oh-my-posh/config.json << 'EOF'
+    mkdir -p /home/scott/.config/oh-my-posh
+    cat > /home/scott/.config/oh-my-posh/config.json << 'EOF'
     {
       "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
       "version": 1,
@@ -1231,7 +1231,7 @@ in
       ]
     }
     EOF
-    chown -R chrisf:users /home/chrisf/.config/oh-my-posh
+    chown -R scott:users /home/scott/.config/oh-my-posh
   '';
 
   # Programs - PRESERVING YOUR EXISTING CONFIG
@@ -1356,7 +1356,7 @@ in
     };
     environment = {
       WAYLAND_DISPLAY = "wayland-0";
-      XDG_RUNTIME_DIR = "/home/chrisf/tmp";
+      XDG_RUNTIME_DIR = "/home/scott/tmp";
       XDG_SESSION_TYPE = "wayland";
       WLR_BACKENDS= "headless";
       PULSE_SERVER = "/run/user/1000/pulse/native";
@@ -1403,7 +1403,7 @@ in
 
   # Enable/Disable automatic login for the user - PRESERVING YOUR EXISTING CONFIG
   services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "chrisf";
+  services.displayManager.autoLogin.user = "scott";
 
   # Workaround for GNOME autologin - PRESERVING YOUR EXISTING CONFIG
   systemd.services."getty@tty1".enable = false;

@@ -3,7 +3,7 @@
 # Per-Monitor Waybar Launcher
 # This script launches different waybar configurations for different monitors
 
-CONFIG_DIR="/home/chrisf/.config/waybar"
+CONFIG_DIR="/home/scott/.config/waybar"
 FULL_CONFIG="$CONFIG_DIR/config"
 SIMPLE_CONFIG="$CONFIG_DIR/simple-config"
 STYLE_FILE="$CONFIG_DIR/style.css"
