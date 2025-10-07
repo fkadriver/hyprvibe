@@ -37,7 +37,17 @@
         specialArgs = {
           inherit hyprland;
         };
-            };
+      };
+      latitude-7480 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/latitude-7480/system.nix
+          prettyswitch.nixosModules.default
+        ];
+        specialArgs = {
+          inherit hyprland;
+        };
+      };
       nixstation = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
